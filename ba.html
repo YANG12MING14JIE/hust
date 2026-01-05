@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修平科技大學 | 企業經營管理系 - 培育數位時代的策略領袖</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- BA 企管系色彩系統 --- */
+        :root {
+            --ba-blue: #003366;      /* 專業深藍：代表策略、穩重 */
+            --ba-teal: #00a896;      /* 數位青：代表創新、趨勢 */
+            --ba-gold: #d4af37;      /* 成功金：代表財富、價值 */
+            --bg-light: #f8f9fa;     /* 乾淨背景 */
+            --text-dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
+            background-color: #fff;
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .title-font {
+            font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
+            font-weight: 700;
+            color: var(--ba-blue);
+        }
+
+        /* 導覽列 */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 15px rgba(0, 51, 102, 0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--ba-blue) !important;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+        .nav-link {
+            color: #555 !important;
+            font-weight: 600;
+            position: relative;
+            margin: 0 10px;
+        }
+        /* 導覽列滑動特效 */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 3px;
+            bottom: -5px; left: 0;
+            background-color: var(--ba-teal);
+            transition: 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        
+        .btn-ba {
+            background: linear-gradient(135deg, var(--ba-blue), var(--ba-teal));
+            border: none;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 168, 150, 0.3);
+            transition: 0.3s;
+        }
+        .btn-ba:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 168, 150, 0.4);
+            color: white;
+        }
+
+        /* Hero Section - 都會菁英感 */
+        .hero-section {
+            height: 92vh;
+            position: relative;
+            /* 背景圖：現代化辦公室、數據分析或團隊協作 */
+            background: linear-gradient(to right, rgba(0, 51, 102, 0.9), rgba(0, 168, 150, 0.5)), 
+                        url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); /* 增加現代感的斜切角 */
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--ba-teal);
+        }
+        
+        /* 專業模組卡片 (Tracks) */
+        .track-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            height: 100%;
+            border-top: 5px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .track-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        /* 背景裝飾圖標 */
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            font-size: 8rem;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        /* 模組配色 */
+        .card-marketing { border-top-color: var(--ba-teal); }
+        .card-marketing::before { content: '\f0a1'; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .card-marketing .icon-box { color: var(--ba-teal); background: rgba(0, 168, 150, 0.1); }
+
+        .card-finance { border-top-color: var(--ba-gold); }
+        .card-finance::before { content: '\f201'; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .card-finance .icon-box { color: var(--ba-gold); background: rgba(212, 175, 55, 0.1); }
+
+        .card-hr { border-top-color: var(--ba-blue); }
+        .card-hr::before { content: '\f508'; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .card-hr .icon-box { color: var(--ba-blue); background: rgba(0, 51, 102, 0.1); }
+
+        .icon-box {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .track-content { position: relative; z-index: 1; }
+
+        /* 數位特色區塊 */
+        .digital-section {
+            background-color: var(--ba-blue);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+        .digital-img-box {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .digital-img-box img {
+            width: 100%;
+            transition: 0.5s;
+        }
+        .digital-img-box:hover img { transform: scale(1.05); }
+        /* 直播標籤 */
+        .live-badge {
+            position: absolute;
+            top: 20px; left: 20px;
+            background: #ff0000;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: flex; align-items: center;
+        }
+        .live-badge span {
+            width: 10px; height: 10px; background: white; border-radius: 50%; margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        /* 職涯 Logo 牆 */
+        .career-logo-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-weight: 700;
+            color: #aaa;
+            border: 2px solid #eee;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.6);
+            padding: 60px 0 30px;
+        }
+        footer h5 { color: white; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-pie me-2" style="color: var(--ba-teal);"></i>
+                <span style="color: var(--ba-blue);">修平科大｜企業經營管理系</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#baNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="baNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="index.html"><i class="fas fa-chevron-left me-1"></i>回招生首頁</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#about">系所優勢</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tracks">專業模組</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#digital">數位特色</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#career">未來出路</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#apply" class="btn btn-ba">立即申請 <i class="fas fa-arrow-right ms-1"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <p class="hero-subtitle mb-3">
+                        <i class="fas fa-rocket me-2"></i>Business Administration, HUST
+                    </p>
+                    <h1 class="display-3 fw-bold mb-4 title-font">
+                        培育數位時代的<br>策略領袖與創新人才
+                    </h1>
+                    <p class="lead mb-5 opacity-90">
+                        結合「數位行銷」、「財務策略」與「創新創業」。<br>
+                        我們不只教你管理知識，更給你征服職場的實戰能力。
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#tracks" class="btn btn-ba btn-lg">探索專業模組</a>
+                        <a href="https://new.hust.edu.tw/ba/" target="_blank" class="btn btn-outline-light btn-lg">
+                            系所官網 <i class="fas fa-external-link-alt ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Teamwork" class="img-fluid rounded-4 shadow-lg">
+                </div>
+                <div class="col-lg-7 ps-lg-5">
+                    <h2 class="fw-bold mb-4" style="color: var(--ba-blue);">不只是管理，更是「跨領域整合」</h2>
+                    <p class="lead text-muted">
+                        修平企管系因應產業數位轉型需求，重新定義了管理教育。我們強調理論與實務的完美結合。
+                    </p>
+                    <div class="row mt-4 g-4">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-check-circle fa-2x me-3" style="color: var(--ba-teal);"></i>
+                                <div>
+                                    <h5 class="fw-bold">數位轉型導向</h5>
+                                    <p class="text-muted small">課程融入大數據分析、電子商務與社群行銷工具應用。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-briefcase fa-2x me-3" style="color: var(--ba-gold);"></i>
+                                <div>
+                                    <h5 class="fw-bold">實務專題製作</h5>
+                                    <p class="text-muted small">與企業合作解決真實問題，畢業即具備即戰力。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracks" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold title-font">三大專業模組</h2>
+                <p class="text-muted">多元發展路徑，打造你的核心競爭力</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="track-card card-marketing">
+                        <div class="icon-box">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="track-content">
+                            <h3 class="h4 fw-bold mb-3">數位行銷與電子商務</h3>
+                            <p class="text-muted mb-4">掌握網路世代的流量密碼。學習社群經營、數位廣告投放、直播電商與數據分析。</p>
+                            <ul class="list-unstyled text-secondary small">
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>社群媒體行銷</li>
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>電子商務實務</li>
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>直播內容製作</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="track-card card-finance">
+                        <div class="icon-box">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="track-content">
+                            <h3 class="h4 fw-bold mb-3">財務金融與投資決策</h3>
+                            <p class="text-muted mb-4">成為企業的資金守門員。學習財務報表分析、投資理財規劃與企業風險管理。</p>
+                            <ul class="list-unstyled text-secondary small">
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>財務管理與分析</li>
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>投資學與理財規劃</li>
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>金融市場實務</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="track-card card-hr">
+                        <div class="icon-box">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <div class="track-content">
+                            <h3 class="h4 fw-bold mb-3">人力資源與創新創業</h3>
+                            <p class="text-muted mb-4">激發團隊潛能，開創事業新局。學習人才招募培訓、組織行為與創業計畫撰寫。</p>
+                            <ul class="list-unstyled text-secondary small">
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>人力資源管理</li>
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>創新與創業管理</li>
+                                <li><i class="fas fa-caret-right me-2 text-primary"></i>專案管理</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="digital" class="digital-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2">
+                    <div class="digital-img-box">
+                        <div class="live-badge"><span></span>LIVE ON AIR</div>
+                        <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Live Streaming Studio"
+                             loading="lazy"
+                             onerror="this.src='https://placehold.co/800x500/003366/00a896?text=Digital+Studio'">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1 pe-lg-5">
+                    <h2 class="display-5 fw-bold mb-4">跟上「網紅經濟」與<br>「數位內容」浪潮</h2>
+                    <p class="lead opacity-90 mb-4">
+                        修平企管系擁有專業的<strong>數位直播攝影棚</strong>與多媒體設備。
+                    </p>
+                    <p class="opacity-75 mb-4">
+                        我們不只教你行銷理論，更讓你實際拿起麥克風、面對鏡頭，學習如何企劃吸睛的數位內容、操作直播帶貨，成為新媒體時代的全能行銷人。
+                    </p>
+                    <a href="#apply" class="btn btn-outline-light rounded-pill px-4 py-2">
+                        預約參觀直播室 <i class="fas fa-chevron-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold title-font">廣闊的職涯發展</h2>
+                <p class="text-muted">企管系畢業生是各行各業都需要的中堅人才</p>
+            </div>
+
+            <div class="row g-4 text-center">
+                <div class="col-md-4 col-6">
+                    <div class="p-4 border rounded bg-light h-100">
+                        <i class="fas fa-ad fa-3x mb-3 text-primary"></i>
+                        <h5 class="fw-bold">行銷與電商領域</h5>
+                        <p class="small text-muted mb-0">數位行銷專員、社群小編、電商營運企劃、直播主。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="p-4 border rounded bg-light h-100">
+                        <i class="fas fa-hand-holding-usd fa-3x mb-3 text-success"></i>
+                        <h5 class="fw-bold">金融與財務領域</h5>
+                        <p class="small text-muted mb-0">銀行辦事員、理財專員、企業財務人員、證券營業員。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="p-4 border rounded bg-light h-100">
+                        <i class="fas fa-user-tie fa-3x mb-3 text-secondary"></i>
+                        <h5 class="fw-bold">管理與人資領域</h5>
+                        <p class="small text-muted mb-0">人力資源專員(HR)、行政儲備幹部、專案管理師、自行創業。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5 align-items-center">
+                <div class="col-md-3">
+                    <h5 class="fw-bold mb-0 text-muted">多元產學合作夥伴：</h5>
+                </div>
+                <div class="col-md-9">
+                    <div class="row g-3">
+                        <div class="col-6 col-md-3"><div class="career-logo-box">知名電商平台</div></div>
+                        <div class="col-6 col-md-3"><div class="career-logo-box">連鎖零售集團</div></div>
+                        <div class="col-6 col-md-3"><div class="career-logo-box">金融保險機構</div></div>
+                        <div class="col-6 col-md-3"><div class="career-logo-box">數位行銷公司</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-5 text-white text-center" style="background: linear-gradient(135deg, var(--ba-blue), #001f3f);">
+        <div class="container py-5">
+            <h2 class="fw-bold mb-4">投資你的未來，從修平企管開始</h2>
+            <p class="lead mb-5 opacity-75">具備數位思維與管理專業，成為職場搶手人才。</p>
+            <button class="btn btn-ba btn-lg px-5 py-3 fs-5">
+                <i class="fas fa-graduation-cap me-2"></i> 立即報名 / 聯絡系辦
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-5">
+                    <h5 class="text-white d-flex align-items-center">
+                        <i class="fas fa-chart-pie me-2" style="color: var(--ba-teal);"></i>
+                        修平科技大學 企業經營管理系
+                    </h5>
+                    <p class="small mb-0">Department of Business Administration, HUST</p>
+                    <p class="small mt-3 opacity-75">
+                        培育具備專業倫理、實務技能與國際視野之企業經營管理人才。
+                    </p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled small opacity-75">
+                        <li><a href="#tracks" class="text-decoration-none text-light">專業模組介紹</a></li>
+                        <li><a href="#digital" class="text-decoration-none text-light">數位直播特色</a></li>
+                        <li><a href="#career" class="text-decoration-none text-light">職涯發展方向</a></li>
+                        <li><a href="https://new.hust.edu.tw/ba/" target="_blank" class="text-decoration-none text-light">系所官方網站</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-6">
+                    <h5>聯絡資訊</h5>
+                    <ul class="list-unstyled small opacity-75">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>台中市大里區工業路11號 (A棟5樓)</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>(04) 2496-1100 轉 2100</li>
+                        <li><i class="fas fa-envelope me-2"></i>ba@hust.edu.tw</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-5 pt-3 border-top border-secondary opacity-50">
+                <div class="col-12 text-center small">
+                    Copyright © 2026 HUST Business Administration. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

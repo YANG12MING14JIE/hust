@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修平科技大學 | 工業工程與管理系 - 精實生產與智慧決策的搖籃</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- IEM 色彩系統 --- */
+        :root {
+            --hust-iem-blue: #004b87;   /* 專業管理藍 */
+            --hust-iem-green: #28a745;  /* 精實/安全綠 */
+            --hust-iem-yellow: #ffc107; /* 品質/警示黃 */
+            --hust-iem-gray: #f8f9fa;   
+            --hust-text: #333;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--hust-text);
+            line-height: 1.6;
+        }
+
+        /* 導覽列 */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--hust-iem-blue) !important;
+            font-size: 1.4rem;
+        }
+        .nav-link {
+            color: #555;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: var(--hust-iem-blue);
+        }
+        .btn-apply-nav {
+            background-color: var(--hust-iem-green);
+            color: white;
+            border-radius: 20px;
+            padding: 5px 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 85vh;
+            /* 背景圖：工廠管理視角 */
+            background: linear-gradient(rgba(0, 75, 135, 0.85), rgba(0, 75, 135, 0.7)), 
+                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero-content {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-left: 5px solid var(--hust-iem-green);
+        }
+
+        /* 卡片設計 */
+        .feature-card {
+            border: none;
+            border-radius: 8px;
+            background: white;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border-top: 4px solid transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        /* 定義不同軌道的顏色 */
+        .card-lean { border-top-color: var(--hust-iem-green); } 
+        .card-auto { border-top-color: #17a2b8; } 
+        .card-human { border-top-color: var(--hust-iem-yellow); } 
+        .card-quality { border-top-color: var(--hust-iem-blue); }
+
+        .icon-box {
+            width: 70px; height: 70px;
+            background: var(--hust-iem-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--hust-iem-blue);
+        }
+
+        /* 圖片容器 */
+        .lab-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+            background: #eee;
+        }
+        .lab-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .lab-img-wrapper:hover .lab-img {
+            transform: scale(1.1);
+        }
+
+        /* 就業方向標籤 */
+        .career-tag {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 8px 15px;
+            border-radius: 50px;
+            margin: 5px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            padding: 50px 0;
+        }
+        footer h5 { color: white; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-tasks me-2"></i>修平工管系 IEM
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>回招生首頁</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#features">系所特色</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#curriculum">課程規劃</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#career">未來出路</a></li>
+                    <li class="nav-item ms-3">
+                        <a href="#contact" class="btn btn-apply-nav">立即諮詢</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1 class="display-4 fw-bold mb-3">精實生產 × 智慧決策</h1>
+                        <h2 class="h4 mb-4 text-light fw-light">培養「提升效率」與「保障安全」的產業醫生</h2>
+                        <p class="lead mb-4">
+                            我們不只管理工廠，更致力於讓流程「更快、更好、更安全」。<br>
+                            加入修平工管，成為工業界最需要的管理人才。
+                        </p>
+                        <a href="#features" class="btn btn-light btn-lg fw-bold text-primary px-4">探索四大核心</a>
+                        <a href="https://new.hust.edu.tw/em/" target="_blank" class="btn btn-outline-light btn-lg px-4 ms-2">系網詳情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-dark">四大核心領域</h2>
+                <p class="text-muted">理論與實務兼具，打造你的職場競爭力</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card-lean">
+                        <div class="icon-box" style="color: var(--hust-iem-green);">
+                            <i class="fas fa-stopwatch"></i>
+                        </div>
+                        <h4 class="fw-bold">生產精實化</h4>
+                        <p class="text-secondary small">
+                            修平工管招牌特色。學習豐田式管理 (TPS)、消除浪費、價值溪流圖分析，成為提升企業效率的專家。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card-auto">
+                        <div class="icon-box" style="color: #17a2b8;">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4 class="fw-bold">智慧自動化</h4>
+                        <p class="text-secondary small">
+                            結合 IoT 物聯網與自動化設備，學習智慧產線規劃與系統整合，接軌工業 4.0 趨勢。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card-human">
+                        <div class="icon-box" style="color: var(--hust-iem-yellow);">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h4 class="fw-bold">工安與人因</h4>
+                        <p class="text-secondary small">
+                            專注職業安全與人因工程。改善工作環境設計，預防職災，培育合格的「職業安全衛生管理員」。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card card-quality">
+                        <div class="icon-box" style="color: var(--hust-iem-blue);">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <h4 class="fw-bold">品質管理</h4>
+                        <p class="text-secondary small">
+                            學習六標準差 (Six Sigma)、統計製程管制 (SPC) 與 ISO 標準，把關產品品質，成為業界搶手的品管專才。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="py-5">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-5">
+                    <h2 class="fw-bold mb-4">完善的實作場域</h2>
+                    <p class="text-secondary mb-4">
+                        我們擁有專業實驗室，讓你親手操作業界使用的系統與設備。
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><strong>精實管理戰情室</strong>：模擬企業決策與生產看板</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><strong>人因工程實驗室</strong>：噪音、照明與工作疲勞測試</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><strong>智慧製造工廠</strong>：自動化倉儲與物流系統</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i><strong>品質管制實驗室</strong>：精密量測與品管統計</li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-3">
+                        <div class="col-6">
+                             <div class="lab-img-wrapper">
+                                 <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                      class="lab-img" alt="Lean Management"
+                                      onerror="this.src='https://placehold.co/600x400?text=Lean+Management'">
+                             </div>
+                             <p class="mt-2 fw-bold text-center">精實生產管理</p>
+                        </div>
+                        <div class="col-6">
+                             <div class="lab-img-wrapper">
+                                 <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                      class="lab-img" alt="Safety Engineering"
+                                      loading="lazy"
+                                      onerror="this.src='https://placehold.co/600x400?text=Safety+Engineering'">
+                             </div>
+                             <p class="mt-2 fw-bold text-center">人因與工安</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">多元就業軌道</h2>
+                <p class="text-muted">畢業即具備工程師與管理師雙重資格</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow-sm p-4">
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-4 mb-md-0 border-end">
+                                <i class="fas fa-drafting-compass fa-3x text-primary mb-3"></i>
+                                <h4 class="fw-bold mb-3">工程技術職</h4>
+                                <div>
+                                    <span class="career-tag">工業工程師 (IE)</span>
+                                    <span class="career-tag">製程工程師</span>
+                                    <span class="career-tag">製造部工程師</span>
+                                    <span class="career-tag">自動化工程師</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4 mb-md-0 border-end">
+                                <i class="fas fa-clipboard-check fa-3x text-success mb-3"></i>
+                                <h4 class="fw-bold mb-3">品質與安衛職</h4>
+                                <div>
+                                    <span class="career-tag">職業安全衛生人員</span>
+                                    <span class="career-tag">ISO 品保人員</span>
+                                    <span class="career-tag">品管工程師 (CQE)</span>
+                                    <span class="career-tag">工安管理師</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-chart-line fa-3x text-warning mb-3"></i>
+                                <h4 class="fw-bold mb-3">管理與規劃職</h4>
+                                <div>
+                                    <span class="career-tag">生管管理師</span>
+                                    <span class="career-tag">物料管理師</span>
+                                    <span class="career-tag">專案經理 (PM)</span>
+                                    <span class="career-tag">廠務主管</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="fw-bold text-secondary">輔導考取證照：</p>
+                <div class="d-flex justify-content-center flex-wrap gap-3">
+                    <span class="badge bg-white text-dark border p-2">工業工程師證照</span>
+                    <span class="badge bg-white text-dark border p-2">職業安全衛生管理員 (乙級)</span>
+                    <span class="badge bg-white text-dark border p-2">品質工程師 (CQE)</span>
+                    <span class="badge bg-white text-dark border p-2">專案管理師 (PMP)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 text-white" style="background-color: var(--hust-iem-blue);">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-3">你的職涯，由「精實」開始</h2>
+            <p class="mb-4 opacity-75">114學年度招生中，歡迎加入修平工管系大家庭</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="bg-white rounded p-4 text-dark text-start">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">姓名</label>
+                                    <input type="text" class="form-control" placeholder="請輸入姓名">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">聯絡電話</label>
+                                    <input type="tel" class="form-control" placeholder="09xx-xxxxxx">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">有興趣的領域 (可複選)</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="lean">
+                                        <label class="form-check-label">精實生產</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="safety">
+                                        <label class="form-check-label">人因與工安</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="quality">
+                                        <label class="form-check-label">品質管理</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100 fw-bold">送出諮詢</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <h5 class="mb-3">修平科技大學 工業工程與管理系</h5>
+            <p class="small mb-2">Dept. of Industrial Engineering and Management, HUST</p>
+            <p class="small"><i class="fas fa-map-marker-alt me-2"></i>台中市大里區工業路11號 (E棟5樓)</p>
+            <p class="small text-muted mt-4">Copyright © 2026 HUST EM. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

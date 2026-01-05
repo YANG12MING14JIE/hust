@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修平科技大學 | 資訊管理系 - 駕馭AI，編寫未來</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- IM 資管系色彩系統 --- */
+        :root {
+            --im-dark: #0a192f;      /* 深海軍藍背景 */
+            --im-blue: #00b4d8;      /* 科技藍 */
+            --im-green: #64ffda;     /* 終端機綠 (Coding) */
+            --im-purple: #bd34fe;    /* AI 紫色 */
+            --text-light: #e6f1ff;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--im-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 程式碼風格字體 */
+        .code-font {
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* 導覽列 */
+        .navbar {
+            background-color: rgba(10, 25, 47, 0.95);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--im-green) !important;
+            font-family: 'Source Code Pro', monospace;
+        }
+        .nav-link {
+            color: var(--text-light) !important;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--im-green) !important;
+        }
+        .nav-link::before {
+            content: "> ";
+            color: var(--im-green);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .nav-link:hover::before {
+            opacity: 1;
+        }
+        .btn-im {
+            background: transparent;
+            color: var(--im-green);
+            border: 1px solid var(--im-green);
+            border-radius: 5px;
+            padding: 8px 20px;
+            font-family: 'Source Code Pro', monospace;
+            transition: 0.3s;
+        }
+        .btn-im:hover {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+            color: var(--im-green);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%);
+        }
+        /* 背景程式碼裝飾 */
+        .bg-code {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.05;
+            font-family: 'Source Code Pro', monospace;
+            white-space: pre;
+            color: var(--im-green);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-tag {
+            color: var(--im-green);
+            font-family: 'Source Code Pro', monospace;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .text-highlight {
+            color: var(--im-blue);
+        }
+        
+        /* 核心模組卡片 (The Matrix Cards) */
+        .track-card {
+            background: #112240;
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+            transition: 0.3s;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .track-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--im-green);
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+        }
+        .track-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .track-title {
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        /* 不同模組的配色 */
+        .card-ai .track-icon { color: var(--im-purple); }
+        .card-sdm .track-icon { color: var(--im-green); }
+        .card-erp .track-icon { color: var(--im-blue); }
+
+        /* 實驗室圖片區塊 */
+        .lab-showcase {
+            background: #112240;
+            padding: 80px 0;
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+        }
+        .lab-img-box {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #233554;
+        }
+        .lab-img-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: 0.5s;
+            filter: grayscale(30%);
+        }
+        .lab-img-box:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        .lab-code-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(10, 25, 47, 0.9);
+            padding: 10px 15px;
+            font-family: 'Source Code Pro', monospace;
+            color: var(--im-green);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--im-green);
+        }
+
+        /* 職涯路徑 (Terminal Style) */
+        .career-terminal {
+            background: #020c1b;
+            border-radius: 10px;
+            padding: 30px;
+            font-family: 'Source Code Pro', monospace;
+            border: 1px solid #233554;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        
+        .cmd-line { margin-bottom: 15px; }
+        .cmd-prompt { color: var(--im-green); margin-right: 10px; }
+        .cmd-output { color: #8892b0; display: block; margin-left: 20px; margin-bottom: 5px; }
+        .keyword { color: var(--im-blue); font-weight: bold; }
+
+        /* Footer */
+        footer {
+            background: #020c1b;
+            padding: 50px 0 20px;
+            text-align: center;
+            color: #8892b0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">&lt;HUST_IM /&gt;</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#imNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="imNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="index.html">&lt;Home /&gt;</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#tracks">三大主軸</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#labs">實驗室</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#career">職涯路徑</a></li>
+                    <li class="nav-item ms-3">
+                        <a href="#apply" class="btn btn-im">Apply.exe</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="bg-code">
+            import numpy as np
+            import tensorflow as tf
+            class Student:
+                def __init__(self):
+                    self.skills = ['Python', 'AI', 'Management']
+                def future(self):
+                    return "Success"
+        </div>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <span class="hero-tag">Hello, World! Welcome to IM.</span>
+                    <h1 class="hero-title">
+                        懂程式的管理者<br>
+                        <span class="text-highlight">懂管理的工程師</span>
+                    </h1>
+                    <p class="lead text-light opacity-75 mb-5" style="max-width: 600px;">
+                        在 AI 時代，單一技能已經不夠。
+                        修平資管系 (IM) 結合「人工智慧」、「系統開發」與「企業管理」，
+                        培養你成為科技與商業之間的關鍵連結者。
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#tracks" class="btn btn-im px-4 py-3 fw-bold" style="background: rgba(100,255,218,0.1);">
+                            探索課程 >
+                        </a>
+                        <a href="https://new.hust.edu.tw/im/" target="_blank" class="btn btn-outline-light px-4 py-3" style="border: 1px solid #8892b0; color: #8892b0;">
+                            系所官網
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Coding Screen" class="img-fluid rounded shadow-lg" 
+                         style="border: 1px solid var(--im-green); box-shadow: 0 0 20px rgba(100,255,218,0.2);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracks" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="code-font text-light display-5">&lt;Core_Modules /&gt;</h2>
+                <p class="text-secondary">修平資管三大核心，打造你的數位超能力</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="track-card card-ai">
+                        <i class="fas fa-brain track-icon"></i>
+                        <h3 class="track-title">AI 人工智慧應用</h3>
+                        <p style="color: #8892b0;">
+                            緊跟 ChatGPT 與生成式 AI 浪潮。學習 Python 程式設計、機器學習、數據探勘。
+                        </p>
+                        <ul class="list-unstyled code-font small" style="color: var(--im-green);">
+                            <li>$ pip install tensorflow</li>
+                            <li>> 影像辨識實作</li>
+                            <li>> 大數據分析</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="track-card card-sdm">
+                        <i class="fas fa-mobile-alt track-icon"></i>
+                        <h3 class="track-title">SDM 系統設計</h3>
+                        <p style="color: #8892b0;">
+                            從零開始打造軟體。涵蓋 App 開發、網頁前後端設計 (Web)、UI/UX 使用者體驗。
+                        </p>
+                        <ul class="list-unstyled code-font small" style="color: var(--im-green);">
+                            <li>$ npm start react-app</li>
+                            <li>> Java / C# 程式設計</li>
+                            <li>> 跨平台 App 開發</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="track-card card-erp">
+                        <i class="fas fa-network-wired track-icon"></i>
+                        <h3 class="track-title">ERP 企業資源規劃</h3>
+                        <p style="color: #8892b0;">
+                            掌握企業營運的核心大腦。學習 SAP 系統操作、電子商務經營、數位轉型策略。
+                        </p>
+                        <ul class="list-unstyled code-font small" style="color: var(--im-green);">
+                            <li>$ connect database</li>
+                            <li>> 商業智慧 (BI)</li>
+                            <li>> 供應鏈管理</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="labs" class="lab-showcase">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <h2 class="code-font text-light">System.init(Labs)</h2>
+                    <p class="text-secondary">工欲善其事，必先利其器。我們擁有與業界同步的開發環境。</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="lab-img-box">
+                        
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="AI Lab" onerror="this.src='https://placehold.co/600x400/112240/64ffda?text=AI+Lab'">
+                        <div class="lab-code-overlay">def AI_Lab():</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="lab-img-box">
+                        
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Coding Lab" onerror="this.src='https://placehold.co/600x400/112240/64ffda?text=Coding+Lab'">
+                        <div class="lab-code-overlay">class Coding_Room:</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="lab-img-box">
+                        
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Big Data Lab" onerror="this.src='https://placehold.co/600x400/112240/64ffda?text=Big+Data'">
+                        <div class="lab-code-overlay">var Data_Center;</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="lab-img-box">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Multimedia Lab" onerror="this.src='https://placehold.co/600x400/112240/64ffda?text=Mac+Lab'">
+                        <div class="lab-code-overlay">import Multimedia;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <h2 class="code-font text-light mb-4">Run Career_Path</h2>
+                    <p class="text-secondary lead">
+                        資管系畢業生擁有「工程師」與「管理師」的雙重選擇權。薪資與發展性皆優於傳統商管科系。
+                    </p>
+                    <div class="d-flex gap-2 mt-4">
+                        <span class="badge rounded-pill bg-primary">#軟體工程師</span>
+                        <span class="badge rounded-pill bg-info text-dark">#大數據分析師</span>
+                        <span class="badge rounded-pill bg-success">#ERP顧問</span>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="career-terminal">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="cmd-line">
+                                <span class="cmd-prompt">user@hust-im:~$</span> ./check_jobs --type=developer
+                            </div>
+                            <div class="cmd-output">
+                                <span class="keyword">[Success]</span> Loading Tech Jobs...<br>
+                                - 前端/後端工程師 (Full Stack Dev)<br>
+                                - App 開發工程師<br>
+                                - AI 演算法工程師
+                            </div>
+                            <br>
+                            <div class="cmd-line">
+                                <span class="cmd-prompt">user@hust-im:~$</span> ./check_jobs --type=manager
+                            </div>
+                            <div class="cmd-output">
+                                <span class="keyword">[Success]</span> Loading Business Jobs...<br>
+                                - 資訊系統分析師 (System Analyst)<br>
+                                - 專案經理 (PM)<br>
+                                - 數位行銷規劃師
+                            </div>
+                            <br>
+                            <div class="cmd-line">
+                                <span class="cmd-prompt">user@hust-im:~$</span> echo "Your Future Starts Here"
+                            </div>
+                            <div class="cmd-output text-light">
+                                Your Future Starts Here_
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-5 text-center" style="background: linear-gradient(180deg, #0a192f 0%, #001f3f 100%);">
+        <div class="container">
+            <h2 class="code-font text-light mb-4">Ready to Code Your Future?</h2>
+            <p class="text-secondary mb-5">不需要很強的電腦基礎，只要有邏輯與熱情，修平資管帶你入門。</p>
+            <button class="btn btn-im px-5 py-3 fs-5 fw-bold" style="background: var(--im-green); color: #0a192f; border:none;">
+                <i class="fas fa-power-off me-2"></i> 立即登入 (Apply Now)
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h4 class="code-font text-light mb-3">&lt;HUST_IM /&gt;</h4>
+            <p class="small mb-0">Department of Information Management, Hsiuping University of Science and Technology</p>
+            <p class="small mt-2">
+                <i class="fas fa-map-marker-alt me-2"></i>台中市大里區工業路11號 (A棟4樓) | 
+                <i class="fas fa-phone mx-2"></i>(04) 2496-1100
+            </p>
+            <div class="mt-4 small opacity-50">
+                // Copyright © 2026 HUST IM. All systems operational.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

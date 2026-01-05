@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修平科技大學 | 電機工程系 - 掌控能源．驅動世界</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- EE 能量風格色彩系統 --- */
+        :root {
+            --ee-yellow: #ffcc00;     /* 電光黃：代表電力、能量 */
+            --ee-blue: #003366;       /* 電力深藍：代表穩定、專業 */
+            --ee-green: #2ecc71;      /* 永續綠：代表綠能、太陽能 */
+            --ee-gray: #eef2f3;       /* 背景灰 */
+            --text-dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text-dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* 充滿力量的標題字體 */
+        h1, h2, h3, .power-font {
+            font-family: 'Exo 2', 'Noto Sans TC', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* 導覽列 */
+        .navbar {
+            background: linear-gradient(90deg, var(--ee-blue), #001f3f);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--ee-yellow) !important;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--ee-yellow) !important;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+        }
+        .btn-apply-nav {
+            background-color: var(--ee-yellow);
+            color: var(--ee-blue) !important;
+            font-weight: 800;
+            border-radius: 4px;
+            padding: 5px 20px;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+        }
+
+        /* Hero Section - 電光火石 */
+        .hero-section {
+            height: 90vh;
+            position: relative;
+            /* 背景圖：發電廠、高壓電塔或電流特效 */
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.6)), 
+                        url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+            z-index: 1;
+        }
+        /* 動態閃電裝飾線 */
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--ee-blue), var(--ee-yellow), var(--ee-blue));
+            box-shadow: 0 0 20px var(--ee-yellow);
+        }
+        
+        .hero-badge {
+            background: rgba(255, 204, 0, 0.2);
+            border: 1px solid var(--ee-yellow);
+            color: var(--ee-yellow);
+            padding: 8px 16px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* 專業領域卡片 (Power Cards) */
+        .power-card {
+            background: white;
+            border: 1px solid #e1e1e1;
+            border-radius: 0;
+            padding: 30px;
+            height: 100%;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--ee-blue);
+        }
+        .power-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-left-color: var(--ee-yellow);
+        }
+        .power-card:hover::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 100px; height: 100px;
+            background: linear-gradient(135deg, transparent 50%, rgba(255, 204, 0, 0.1) 50%);
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--ee-blue);
+        }
+        
+        /* 實驗室區塊 - 證照與實作 */
+        .lab-section {
+            background-color: var(--ee-gray);
+            padding: 80px 0;
+            position: relative;
+        }
+        /* 圖片容器 */
+        .lab-img-container {
+            position: relative;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #ddd;
+        }
+        .lab-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .lab-img-container:hover .lab-img {
+            transform: scale(1.1);
+        }
+        .lab-tag {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--ee-yellow);
+            color: var(--ee-blue);
+            padding: 5px 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        /* 國營事業與就業 */
+        .career-box {
+            background: var(--ee-blue);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .career-box i {
+            color: var(--ee-yellow);
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .career-bg-icon {
+            position: absolute;
+            top: -20px; right: -20px;
+            font-size: 10rem;
+            color: rgba(255,255,255,0.05);
+            transform: rotate(15deg);
+        }
+
+        /* 數字亮點 */
+        .stat-num {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--ee-yellow);
+            line-height: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b1a2a;
+            color: #8fa1b3;
+            padding: 60px 0 20px;
+            border-top: 3px solid var(--ee-yellow);
+        }
+        footer a { color: #8fa1b3; text-decoration: none; }
+        footer a:hover { color: var(--ee-yellow); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-bolt me-2"></i>修平電機系 HUST EE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#eeNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="eeNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>回招生首頁</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#focus">三大主軸</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#license">證照與實驗室</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#career">國營就業</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#apply" class="btn btn-apply-nav">立即報名 <i class="fas fa-arrow-right ms-1"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-badge">POWER & ENERGY</div>
+                    <h1 class="display-3 mb-3 power-font text-white" style="text-shadow: 0 0 20px rgba(0,51,102,0.8);">
+                        掌控能源．驅動世界
+                    </h1>
+                    <h2 class="h4 mb-4 text-light fw-light">
+                        全國唯一擁有<span style="color: var(--ee-yellow); font-weight:bold;">「發輸配電」</span>完整教學設備
+                    </h2>
+                    <p class="lead mb-5 text-white opacity-90">
+                        從台電高壓電網、太陽能綠電，到智慧自動控制。<br>
+                        在這裡，你將取得最有價值的「甲/乙級證照」，成為國家建設的推手。
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#focus" class="btn btn-warning btn-lg fw-bold px-4" style="background: var(--ee-yellow); border:none; color: #000;">
+                            探索課程
+                        </a>
+                        <a href="https://new.hust.edu.tw/ee/" target="_blank" class="btn btn-outline-light btn-lg px-4">
+                            參觀系網
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="focus" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="power-font text-dark display-5">三大核心領域</h2>
+                <div style="width: 60px; height: 5px; background: var(--ee-yellow); margin: 15px auto;"></div>
+                <p class="text-secondary">軟硬體兼具，打造全方位電力工程師</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="power-card">
+                        <i class="fas fa-plug card-icon"></i>
+                        <h3 class="h4 fw-bold">電力系統與能源</h3>
+                        <p class="text-secondary">
+                            全台科大少見的完整電力訓練。涵蓋高壓配電、室內配電、電力電子技術。
+                            <br><strong class="text-primary">就業目標：台電工程師、機電顧問。</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="power-card" style="border-left-color: var(--ee-yellow);">
+                        <i class="fas fa-cogs card-icon" style="color: var(--ee-yellow);"></i>
+                        <h3 class="h4 fw-bold">機電整合與控制</h3>
+                        <p class="text-secondary">
+                            學習 PLC 可程式控制、馬達控制與機械手臂應用。讓設備「動」起來的核心大腦。
+                            <br><strong class="text-primary">就業目標：自動化工程師、設備工程師。</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="power-card" style="border-left-color: var(--ee-green);">
+                        <i class="fas fa-solar-panel card-icon" style="color: var(--ee-green);"></i>
+                        <h3 class="h4 fw-bold">綠色能源科技</h3>
+                        <p class="text-secondary">
+                            響應全球淨零碳排。專注於太陽光電系統、風力發電與儲能系統規劃。
+                            <br><strong class="text-primary">就業目標：太陽能系統規劃師、能源管理師。</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="license" class="lab-section">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="power-font display-6 fw-bold text-dark">
+                        證照在手，身價無窮
+                    </h2>
+                    <p class="lead text-secondary mt-3">
+                        修平電機系擁有<strong>國家級檢定考場</strong>，上課地點就是考場，考照及格率超高！
+                    </p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-certificate text-warning fa-2x me-3"></i>
+                            <div>
+                                <h5 class="fw-bold mb-0">室內配線 (乙級)</h5>
+                                <small class="text-muted">電機系含金量最高的證照，業界加薪保證</small>
+                            </div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-industry text-primary fa-2x me-3"></i>
+                            <div>
+                                <h5 class="fw-bold mb-0">工業配線 (乙級)</h5>
+                                <small class="text-muted">工廠自動化控制必備</small>
+                            </div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-sun text-success fa-2x me-3"></i>
+                            <div>
+                                <h5 class="fw-bold mb-0">太陽光電設置 (乙級)</h5>
+                                <small class="text-muted">綠能產業入場券</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="lab-img-container">
+                                <div class="lab-tag">室內配線考場</div>
+                                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Wiring Lab" class="lab-img"
+                                     onerror="this.src='https://placehold.co/600x400/003366/FFF?text=Wiring+Lab'">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="lab-img-container">
+                                <div class="lab-tag bg-success text-white">太陽光電場</div>
+                                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Solar Lab" class="lab-img"
+                                     onerror="this.src='https://placehold.co/600x400/2ecc71/FFF?text=Solar+Lab'">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="lab-img-container">
+                                <div class="lab-tag bg-info text-white">PLC 自動控制</div>
+                                <img src="https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="PLC Lab" class="lab-img"
+                                     onerror="this.src='https://placehold.co/600x400/17a2b8/FFF?text=PLC+Control'">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="lab-img-container">
+                                <div class="lab-tag bg-danger text-white">高壓電力</div>
+                                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                     alt="High Voltage" class="lab-img"
+                                     onerror="this.src='https://placehold.co/600x400/dc3545/FFF?text=High+Voltage'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-dark">畢業即就業，鐵飯碗首選</h2>
+                <p class="text-muted">電機系是進入國營事業（台電、中油、台水）錄取率最高的科系</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="career-box">
+                        <i class="fas fa-bolt career-bg-icon"></i>
+                        <i class="fas fa-hard-hat"></i>
+                        <h4 class="fw-bold">台電公司</h4>
+                        <p class="opacity-75">配電線路維護、變電設備維護。工作穩定，福利優渥。</p>
+                        <div class="stat-num mt-3">TOP 1</div>
+                        <small>國營事業錄取首選</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="career-box" style="background-color: var(--ee-green);">
+                        <i class="fas fa-leaf career-bg-icon"></i>
+                        <i class="fas fa-wind"></i>
+                        <h4 class="fw-bold">離岸風電/太陽能</h4>
+                        <p class="opacity-75">丹麥沃旭、達德能源等外商公司。薪資水準高，發展潛力大。</p>
+                        <div class="stat-num mt-3">50K+</div>
+                        <small>平均起薪</small>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="career-box" style="background-color: #4a4a4a;">
+                        <i class="fas fa-microchip career-bg-icon"></i>
+                        <i class="fas fa-building"></i>
+                        <h4 class="fw-bold">台積電/高科技廠</h4>
+                        <p class="opacity-75">擔任廠務工程師 (Facility)，負責維持工廠電力與水氣穩定。</p>
+                        <div class="stat-num mt-3">Hot</div>
+                        <small>科技業廠務新貴</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-5" style="background: linear-gradient(135deg, #111, var(--ee-blue)); color: white;">
+        <div class="container text-center py-4">
+            <h2 class="fw-bold mb-4">掌握一技之長，點亮你的未來</h2>
+            <p class="lead mb-5 opacity-75">無論是想進台電捧鐵飯碗，或成為綠能工程師，修平電機都是最佳起點。</p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-warning btn-lg fw-bold px-5 py-3" style="background-color: var(--ee-yellow); border:none; color: var(--ee-blue);">
+                    <i class="fas fa-paper-plane me-2"></i> 立即報名獨招
+                </button>
+                <button class="btn btn-outline-light btn-lg px-5">
+                    聯絡系辦 (04)2496-1100
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-white mb-3">修平科技大學 電機工程系</h5>
+                    <p class="small">Department of Electrical Engineering, HUST</p>
+                    <p class="small"><i class="fas fa-map-marker-alt me-2"></i>台中市大里區工業路11號 (A棟)</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="mb-3">
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-line fa-lg"></i></a>
+                    </div>
+                    <p class="small text-muted">Copyright © 2026 HUST EE. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

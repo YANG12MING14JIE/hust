@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修平科技大學 | 機械工程系 - 驅動未來的工程師</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 色彩系統優化 --- */
+        :root {
+            --hust-blue: #0056b3;       /* 穩重的深藍 (文字/標題) */
+            --hust-tech-blue: #0099ff;  /* 科技亮藍 (圖示/強調) */
+            --hust-accent: #ff6600;     /* 機械橘 (CTA按鈕/警示) */
+            --bg-light: #ffffff;        /* 純白背景 */
+            --bg-gray: #f4f7f9;         /* 極淺藍灰 (區塊分隔) */
+            --text-dark: #2c3e50;       /* 深灰 (主要文字) */
+            --text-gray: #5a6a7e;       /* 次要文字 */
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7; /* 增加行距提升閱讀性 */
+        }
+
+        /* 標題字體：保留機械風格，但使用深色 */
+        h1, h2, h3, .tech-font {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            color: #0d1b2a;
+        }
+
+        /* 導覽列：深色底白字，確保導航清晰 */
+        .navbar {
+            background-color: #002855; /* 深海軍藍 */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #fff !important;
+            color: var(--hust-tech-blue) !important;
+        }
+        .btn-apply-nav {
+            background-color: var(--hust-accent);
+            color: white !important;
+            border-radius: 5px;
+            padding: 5px 20px;
+            transition: 0.3s;
+        }
+        .btn-apply-nav:hover {
+            background-color: #e05a00;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section：保留深色背景圖片以突顯白色大標題 */
+        .hero-section {
+            height: 90vh;
+            /* 圖片上加了一層較深的藍色遮罩，確保白字清楚 */
+            background: linear-gradient(rgba(0, 40, 85, 0.75), rgba(0, 40, 85, 0.6)), 
+                        url('https://images.unsplash.com/photo-1565043589221-1a6fd49745ea?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-line {
+            width: 80px;
+            height: 5px;
+            background-color: var(--hust-accent);
+            margin: 20px auto;
+        }
+
+        /* 區塊背景交錯 */
+        section {
+            padding: 80px 0;
+        }
+        .bg-gray-tech {
+            background-color: var(--bg-gray);
+            border-top: 1px solid #e1e8ed;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        /* 雙軌特色卡片：改為白底深字，加上陰影 */
+        .track-card {
+            background: white;
+            border: none;
+            border-radius: 10px;
+            padding: 40px 30px;
+            height: 100%;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* 柔和陰影 */
+            border-bottom: 5px solid transparent; /* 預留底部線條 */
+        }
+        .track-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        /* 兩組不同顏色的底部線條 */
+        .track-card.ev { border-bottom-color: #00c853; } /* 電動車綠 */
+        .track-card.me { border-bottom-color: var(--hust-tech-blue); } /* 機械藍 */
+
+        .track-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        .track-list li {
+            margin-bottom: 10px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+        .track-list i {
+            width: 25px;
+        }
+
+        /* 實驗室圖片優化 */
+        .lab-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #000; /* 圖片載入前的底色 */
+        }
+        .lab-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: 0.5s;
+            opacity: 0.9;
+        }
+        .lab-item:hover img {
+            transform: scale(1.1);
+            opacity: 0.6; /* hover時變暗，讓文字更清楚 */
+        }
+        .lab-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+        }
+
+        /* 數據區塊 */
+        .stat-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--hust-blue);
+            line-height: 1;
+            margin-bottom: 10px;
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding: 60px 0 30px;
+        }
+        footer h5 { color: white; margin-bottom: 20px; }
+        footer a { color: #aaa; text-decoration: none; }
+        footer a:hover { color: white; }
+
+        /* 通用按鈕優化 */
+        .btn-primary-custom {
+            background-color: var(--hust-blue);
+            border-color: var(--hust-blue);
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        .btn-primary-custom:hover {
+            background-color: #004494;
+        }
+        .btn-outline-custom {
+            color: var(--hust-blue);
+            border-color: var(--hust-blue);
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        .btn-outline-custom:hover {
+            background-color: var(--hust-blue);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cogs me-2"></i>修平機械系 ME
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#meNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="meNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>回招生首頁</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#tracks">專業分組</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#labs">特色實驗室</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#career">未來出路</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#apply" class="btn btn-apply-nav">立即報名 <i class="fas fa-arrow-right ms-1"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <span class="badge bg-warning text-dark mb-3 px-3 py-2 fs-6 rounded-pill">Industry 4.0 Leader</span>
+            <h1 class="display-3 fw-bold mb-3 text-white">駕馭精密．啟動未來</h1>
+            <h2 class="h3 fw-light mb-4 text-white-50">機械工程系 × 智慧車輛組</h2>
+            <div class="hero-line"></div>
+            <p class="lead mb-5 mx-auto text-light" style="max-width: 700px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                結合 Tesla 與 Gogoro 實務技術，掌握五軸加工與 AI 智慧製造。<br>
+                你是下一個定義工業技術的工程師。
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#tracks" class="btn btn-primary btn-lg px-5" style="background-color: var(--hust-accent); border:none;">探索課程</a>
+                <a href="https://new.hust.edu.tw/me/" target="_blank" class="btn btn-outline-light btn-lg px-5">參觀系網</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="tracks">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-5 fw-bold text-dark">兩大專業領域</h2>
+                    <p class="text-secondary fs-5">依照興趣，選擇最適合你的技術賽道</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="track-card ev text-center text-md-start">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-car-battery track-icon me-3" style="color: #00c853;"></i>
+                            <div>
+                                <h3 class="h2 fw-bold mb-0">智慧車輛組</h3>
+                                <span class="badge bg-success">熱門趨勢</span>
+                            </div>
+                        </div>
+                        <p class="text-dark mb-4 lead" style="font-size: 1.1rem;">
+                            瞄準電動車（EV）與無人載具市場。擁有 Tesla 實驗室與 Gogoro 訓練中心，讓你直接接觸前線技術。
+                        </p>
+                        <ul class="list-unstyled track-list text-start">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Tesla 車輛實習與檢修技術</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Gogoro 智慧雙輪技術認證</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>車輛電路與感測控制系統</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>綠能動力系統研發</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="track-card me text-center text-md-start">
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-robot track-icon me-3" style="color: var(--hust-tech-blue);"></i>
+                            <div>
+                                <h3 class="h2 fw-bold mb-0">精密機械技術</h3>
+                                <span class="badge bg-primary">工業基石</span>
+                            </div>
+                        </div>
+                        <p class="text-dark mb-4 lead" style="font-size: 1.1rem;">
+                            工業 4.0 的核心推手。從 CAD/CAM 設計到五軸 CNC 加工，再到機械手臂自動化控制，培養全方位研發人才。
+                        </p>
+                        <ul class="list-unstyled track-list text-start">
+                            <li><i class="fas fa-check-circle text-primary me-2"></i>五軸精密加工實務操作</li>
+                            <li><i class="fas fa-check-circle text-primary me-2"></i>機電整合與機械手臂控制</li>
+                            <li><i class="fas fa-check-circle text-primary me-2"></i>逆向工程與 3D 列印應用</li>
+                            <li><i class="fas fa-check-circle text-primary me-2"></i>電腦輔助工程分析 (CAE)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="labs" class="bg-gray-tech">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5">
+                <div>
+                    <h2 class="fw-bold mb-2">千萬級實驗設備</h2>
+                    <p class="text-secondary mb-0 fs-5">做中學，練就一身真功夫</p>
+                </div>
+                <a href="#" class="btn btn-outline-primary rounded-pill">查看更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-lg-6 col-md-12">
+                    <div class="lab-item h-100">
+                        <img src="https://images.unsplash.com/photo-1560205001-a7011fc0093c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Tesla Lab">
+                        <div class="lab-caption">
+                            <h4 class="fw-bold mb-1">Tesla 特斯拉實驗室 <span class="badge bg-danger ms-2">全台稀有</span></h4>
+                            <p class="small opacity-75 mb-0">拆解頂級電動車工藝，掌握電池模組技術。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="lab-item">
+                        <img src="https://images.unsplash.com/photo-1589792923962-537704632910?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CNC">
+                        <div class="lab-caption">
+                            <h5 class="fw-bold">五軸精密加工</h5>
+                            <p class="small opacity-75 mb-0">航太級零件製造</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="lab-item">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robot">
+                        <div class="lab-caption">
+                            <h5 class="fw-bold">智慧自動化</h5>
+                            <p class="small opacity-75 mb-0">機器人系統整合</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="lab-item">
+                        <img src="https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gogoro">
+                        <div class="lab-caption">
+                            <h5 class="fw-bold">Gogoro 訓練中心</h5>
+                            <p class="small opacity-75 mb-0">原廠認證培訓</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="lab-item">
+                        <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CAD">
+                        <div class="lab-caption">
+                            <h5 class="fw-bold">電腦輔助工程</h5>
+                            <p class="small opacity-75 mb-0">CAD/CAE 模擬分析</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="lab-item h-100">
+                        <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Green Energy">
+                        <div class="lab-caption">
+                            <h4 class="fw-bold mb-1">綠能動力實驗室</h4>
+                            <p class="small opacity-75 mb-0">氫能車與太陽能車研發基地。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-dark">畢業即戰力，企業搶著要</h2>
+                <p class="text-secondary">我們與產業龍頭深度合作，提供大四全學年實習機會</p>
+            </div>
+            
+            <div class="row g-4 text-center mb-5">
+                <div class="col-6 col-md-3">
+                    <div class="p-4 border rounded bg-white shadow-sm">
+                        <h5 class="fw-bold text-dark">亞崴機電</h5>
+                        <small class="text-muted">上市公司</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-4 border rounded bg-white shadow-sm">
+                        <h5 class="fw-bold text-dark">慶鴻機電</h5>
+                        <small class="text-muted">EDM領導品牌</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-4 border rounded bg-white shadow-sm">
+                        <h5 class="fw-bold text-dark">Gogoro</h5>
+                        <small class="text-muted">智慧能源</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="p-4 border rounded bg-white shadow-sm">
+                        <h5 class="fw-bold text-dark">上銀科技</h5>
+                        <small class="text-muted">傳動元件龍頭</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="stat-box h-100 d-flex flex-column justify-content-center align-items-center">
+                                <div class="stat-number">100<small class="fs-4">%</small></div>
+                                <div class="text-muted fw-bold">實習媒合率</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-box h-100 d-flex flex-column justify-content-center align-items-center">
+                                <div class="stat-number">40k<small class="fs-4">+</small></div>
+                                <div class="text-muted fw-bold">平均起薪 (技術職)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-box h-100 d-flex flex-column justify-content-center align-items-center">
+                                <div class="stat-number text-danger">TOP 1</div>
+                                <div class="text-muted fw-bold">中部私科大首選</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" style="background-color: var(--hust-blue); color: white;">
+        <div class="container text-center py-4">
+            <h2 class="fw-bold mb-4">準備好啟動你的工程師生涯了嗎？</h2>
+            <p class="lead mb-5 opacity-75">無論是精密機械或電動車技術，修平機械系都是你最強的後盾。</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-warning btn-lg fw-bold px-5 text-dark" style="background-color: var(--hust-accent); border:none;">立即報名獨招</button>
+                <button class="btn btn-outline-light btn-lg px-5">聯繫系辦公室</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white mb-3">修平科技大學 機械工程系</h5>
+                    <p class="small">
+                        Hsiuping University of Science and Technology<br>
+                        Department of Mechanical Engineering
+                    </p>
+                    <div class="mt-3">
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white mb-3">聯絡資訊</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>台中市大里區工業路11號 (B棟)</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>(04) 2496-1100 轉 1100</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>me@hust.edu.tw</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white mb-3">快速連結</h5>
+                    <div class="row small">
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">系所簡介</a></li>
+                                <li><a href="#">師資陣容</a></li>
+                                <li><a href="#">課程規劃</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">招生資訊</a></li>
+                                <li><a href="#">表單下載</a></li>
+                                <li><a href="#">榮譽榜</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 pt-4 border-top border-secondary">
+                <div class="col-12 text-center small">
+                    &copy; 2026 HUST Mechanical Engineering. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

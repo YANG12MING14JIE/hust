@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修平科技大學 | 114學年度二技進修部單獨招生</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 自定義 CSS --- */
+        :root {
+            --hust-blue: #004085; /* 科技深藍 */
+            --hust-light-blue: #0056b3;
+            --hust-orange: #fd7e14; /* 活力橙色 (CTA) */
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 導覽列 */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--hust-blue) !important;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: #555;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--hust-blue);
+        }
+        .btn-apply-nav {
+            background-color: var(--hust-orange);
+            color: white;
+            border-radius: 20px;
+            padding: 5px 20px;
+        }
+        .btn-apply-nav:hover {
+            background-color: #e36a0d;
+            color: white;
+        }
+
+        /* Hero 主視覺區 */
+        .hero-section {
+            /* 這裡建議換成真實校園照片 */
+            background: linear-gradient(rgba(0, 64, 133, 0.8), rgba(0, 64, 133, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* 特色區塊 */
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+            transition: 0.3s;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            height: 100%;
+            background: white;
+        }
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: var(--hust-blue);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--hust-blue);
+            margin-bottom: 20px;
+        }
+
+        /* 系所卡片 */
+        .dept-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            height: 100%;
+        }
+        .dept-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .dept-header {
+            background-color: var(--hust-blue);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 5px 5px 0 0;
+        }
+        .quota-badge {
+            background-color: var(--hust-orange);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* 常見問題 Accordion */
+        .accordion-button:not(.collapsed) {
+            color: var(--hust-blue);
+            background-color: rgba(0, 64, 133, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 50px 0 20px;
+        }
+        footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: white;
+        }
+
+        /* CTA 按鈕通用 */
+        .btn-primary-custom {
+            background-color: var(--hust-blue);
+            border-color: var(--hust-blue);
+            padding: 10px 30px;
+            font-size: 1.1rem;
+        }
+        .btn-outline-light-custom {
+            border-color: white;
+            color: white;
+            padding: 10px 30px;
+            font-size: 1.1rem;
+        }
+        .btn-outline-light-custom:hover {
+            background-color: white;
+            color: var(--hust-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-graduation-cap me-2"></i>修平科技大學｜二技進修部</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#features">特色優勢</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#departments">招生系科</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admission">報名資訊</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">常見問題</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-apply-nav" href="#contact">立即報名</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">114學年度 二技進修部單獨招生</h1>
+            <p class="hero-subtitle">工作學歷雙贏．週末升級人生．政府補助50%學費</p>
+            <div class="mt-4">
+                <a href="#contact" class="btn btn-primary btn-lg me-3" style="background-color: var(--hust-orange); border:none;">立即報名</a>
+                <a href="#" class="btn btn-outline-light-custom btn-lg"><i class="fas fa-download me-2"></i>下載簡章</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--hust-blue);">為什麼選擇修平二技？</h2>
+                <p class="text-muted">專為職場人士打造的進修方案</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="feature-box">
+                        <i class="fas fa-clock feature-icon"></i>
+                        <h4>時間彈性</h4>
+                        <p>週六下午與週日上課，工作與學業完美兼顧，不影響平日上班。</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-box">
+                        <i class="fas fa-file-signature feature-icon"></i>
+                        <h4>免筆試入學</h4>
+                        <p>採書面資料審查 (自傳+履歷+證照)，輕鬆入學無負擔。</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-box">
+                        <i class="fas fa-coins feature-icon"></i>
+                        <h4>學費補助50%</h4>
+                        <p>本國籍學生享行政院私立大學學費補助，每學期平均僅需負擔約 1.5 萬元。</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-box">
+                        <i class="fas fa-user-graduate feature-icon"></i>
+                        <h4>正規學士學位</h4>
+                        <p>畢業證書與日間部相同，不加註「進修」字樣，提升職場競爭力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="departments" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--hust-blue);">114年 招生系科</h2>
+                <p class="text-muted">點擊下方按鈕，探索各系專屬特色</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 col-sm-6">
+                    <div class="card dept-card h-100">
+                        <div class="dept-header">
+                            <i class="fas fa-laptop-code me-2"></i> 資訊管理系
+                            <span class="quota-badge">名額 45</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text flex-grow-1">聚焦 <strong>AI人工智慧</strong>、資訊系統設計(SDM)及企業資源規劃(ERP)。因應ChatGPT趨勢，培養未來AI時代的應用能力。</p>
+                            <a href="im.html" class="btn btn-outline-primary w-100 mt-3">前往系網 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card dept-card h-100">
+                        <div class="dept-header">
+                            <i class="fas fa-cogs me-2"></i> 機械工程系
+                            <span class="quota-badge">名額 51</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text flex-grow-1">培育精密機械、機電整合及車輛工程人才。結合業界設備，理論與實務並重，打造中高級機械技術人才。</p>
+                            <a href="me.html" class="btn btn-outline-primary w-100 mt-3">前往系網 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4 col-sm-6">
+                    <div class="card dept-card h-100">
+                        <div class="dept-header">
+                            <i class="fas fa-chart-line me-2"></i> 工業工程與管理系
+                            <span class="quota-badge">名額 45</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text flex-grow-1">涵蓋自動化、精實生產與製商整合。強調創意思考與系統整合，培育具備決策力的中高階管理人才。</p>
+                            <a href="em.html" class="btn btn-outline-primary w-100 mt-3">前往系網 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card dept-card h-100">
+                        <div class="dept-header">
+                            <i class="fas fa-bolt me-2"></i> 電機工程系
+                            <span class="quota-badge">名額 50</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text flex-grow-1">主攻微電腦控制、機電整合、電力電子與光電半導體。培育具備設計、研發及維修能力的高級電機工程師。</p>
+                            <a href="ee.html" class="btn btn-outline-primary w-100 mt-3">前往系網 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card dept-card h-100">
+                        <div class="dept-header">
+                            <i class="fas fa-briefcase me-2"></i> 企業經營管理系
+                            <span class="quota-badge">名額 70</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text flex-grow-1">具備經營診斷與財務規劃能力。課程含國際貿易、金融、企業e化及外語，建立策略聯盟提供就業機會。</p>
+                            <a href="ba.html" class="btn btn-outline-primary w-100 mt-3">前往系網 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card dept-card h-100">
+                        <div class="dept-header">
+                            <i class="fas fa-language me-2"></i> 應用日語系
+                            <span class="quota-badge">名額 55</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text flex-grow-1">培育商務與觀光日語人才。推動日本姊妹校交換留學與建教合作，強化聽說讀寫譯能力。</p>
+                            <a href="aj.html" class="btn btn-outline-primary w-100 mt-3">前往系網 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admission" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <h3 class="fw-bold mb-4" style="color: var(--hust-blue);">報名資格檢核</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> 專科學校畢業</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> 大學肄業 (大二下有成績)</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> 二專肄業 (二上有成績離校2年 / 二下有成績離校1年)</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> 高中職畢業 + 5年相關工作經驗</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> 年滿22歲 + 修習推廣教育課程達80學分</li>
+                    </ul>
+                    <div class="mt-3">
+                        <small class="text-muted">*詳細規定請參閱招生簡章</small>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="fw-bold mb-4" style="color: var(--hust-blue);">重要日程 (114學年度)</h3>
+                            <div class="d-flex mb-3">
+                                <div class="me-3 text-center" style="min-width: 60px;">
+                                    <div class="fw-bold text-danger">3/17</div>
+                                    <div class="small">開始</div>
+                                </div>
+                                <div>
+                                    <strong>通訊/現場報名開始</strong><br>
+                                    <span class="text-muted">準備好資料，開始受理報名</span>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <div class="me-3 text-center" style="min-width: 60px;">
+                                    <div class="fw-bold text-danger">8/20</div>
+                                    <div class="small">截止</div>
+                                </div>
+                                <div>
+                                    <strong>通訊報名截止</strong><br>
+                                    <span class="text-muted">以郵戳為憑</span>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <div class="me-3 text-center" style="min-width: 60px;">
+                                    <div class="fw-bold text-danger">8/29</div>
+                                    <div class="small">放榜</div>
+                                </div>
+                                <div>
+                                    <strong>公告錄取榜單</strong><br>
+                                    <span class="text-muted">網站公告及寄發註冊通知</span>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="me-3 text-center" style="min-width: 60px;">
+                                    <div class="fw-bold text-danger">9/20</div>
+                                    <div class="small">開學</div>
+                                </div>
+                                <div>
+                                    <strong>正式開學</strong><br>
+                                    <span class="text-muted">週六開學，展開新生活</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5" style="color: var(--hust-blue);">常見問題 FAQ</h2>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            <strong>Q: 學費大約多少？有補助嗎？</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            每學期學費約 30,000 元。但本國籍學生享<strong>行政院私立大學學費補助 50%</strong>，減免後每學期學費約 <strong>15,000 元</strong>。另有弱勢助學金可申請。
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            <strong>Q: 只有高中職畢業可以報名嗎？</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            可以！只要您具備 <strong>5年工作經驗</strong>（高中職畢業後起算，不同公司年資可累計），即可報名。請附上勞保投保資料表或公司在職證明。
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                            <strong>Q: 需要考試嗎？如何錄取？</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>完全免筆試！</strong> 採用資料審查方式錄取：
+                            <ul>
+                                <li>學生自傳與學習計畫 (80%)</li>
+                                <li>相關工作年資履歷表 (10%)</li>
+                                <li>專業證照或其他得獎證明 (10%)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                            <strong>Q: 工作要輪班或加班，無法到校怎麼辦？</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                           學校提供網路請假系統。只要缺課時數不超過全學期該科目時數的 1/3，即不會被扣考。現役軍人因公戰備演訓可核給公假。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5" style="background-color: var(--hust-blue); color: white;">
+        <div class="container text-center">
+            <h2 class="mb-4">準備好提升自己了嗎？</h2>
+            <p class="mb-4" style="font-size: 1.2rem;">留下資料，招生組將會主動聯繫您協助報名。</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form class="bg-white p-4 rounded text-dark text-start">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">姓名</label>
+                                <input type="text" class="form-control" placeholder="請輸入姓名">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">電話</label>
+                                <input type="tel" class="form-control" placeholder="09xx-xxxxxx">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">想就讀的科系</label>
+                            <select class="form-select">
+                                <option selected>請選擇...</option>
+                                <option>資訊管理系</option>
+                                <option>機械工程系</option>
+                                <option>工業工程與管理系</option>
+                                <option>電機工程系</option>
+                                <option>企業經營管理系</option>
+                                <option>應用日語系</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">留言內容 (或 Line ID)</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold" style="background-color: var(--hust-orange); color: white;">送出資料</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>修平科技大學</h5>
+                    <p>進修部單獨招生委員會</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>412-406 台中市大里區工業路11號</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>聯絡我們</h5>
+                    <p><i class="fas fa-phone me-2"></i>04-23696110 / 04-24961177</p>
+                    <p><i class="fas fa-envelope me-2"></i>shen123@hust.edu.tw</p>
+                    <p><i class="fas fa-mobile-alt me-2"></i>0926-088488</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>交通資訊</h5>
+                    <p>台中市公車: 3、7、158、280、284、286 可直達本校。</p>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="text-center small">
+                Copyright © Hsiuping University of Science and Technology. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

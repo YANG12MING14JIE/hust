@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修平科技大學 | 應用日語系 - 你的日本職涯登機門</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- AJ 和風色彩系統 --- */
+        :root {
+            --aj-indigo: #1e3a5f;    /* 紺青：日本傳統深藍 (專業) */
+            --aj-red: #d74b4b;       /* 茜色：鳥居/太陽 (熱情) */
+            --aj-sakura: #fdeff2;    /* 櫻色：背景 (溫柔) */
+            --aj-matcha: #769a5b;    /* 抹茶：點綴 (成長) */
+            --bg-paper: #fcfaf2;     /* 和紙白：質感背景 */
+            --text-dark: #2b2b2b;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-paper);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 優雅的襯線標題 */
+        h1, h2, h3, .elegant-font {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 700;
+        }
+
+        /* 導覽列 */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(30, 58, 95, 0.1);
+            border-bottom: 3px solid var(--aj-red);
+        }
+        .navbar-brand {
+            font-weight: 900;
+            color: var(--aj-indigo) !important;
+            display: flex;
+            align-items: center;
+        }
+        .nav-link {
+            color: #555 !important;
+            font-weight: 500;
+            position: relative;
+            margin: 0 10px;
+        }
+        .nav-link:hover {
+            color: var(--aj-red) !important;
+        }
+        /* 櫻花瓣 hover 效果 */
+        .nav-link::after {
+            content: '🌸';
+            position: absolute;
+            font-size: 0.8rem;
+            top: -10px; right: -10px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .nav-link:hover::after {
+            opacity: 1;
+            top: 0;
+        }
+        
+        .btn-aj {
+            background-color: var(--aj-red);
+            color: white;
+            border-radius: 50px;
+            padding: 8px 25px;
+            font-family: 'Noto Serif TC', serif;
+            transition: 0.3s;
+            border: 1px solid var(--aj-red);
+        }
+        .btn-aj:hover {
+            background-color: white;
+            color: var(--aj-red);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section - 現代和風 */
+        .hero-section {
+            height: 90vh;
+            position: relative;
+            /* 背景：日本街景或櫻花 */
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.4)),
+                        url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+        /* 青海波紋樣裝飾 */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20c11.046 0 20-8.954 20-20H0c0 11.046 8.954 20 20 20z' fill='%231e3a5f' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: 2;
+        }
+        
+        /* 直書標題區塊 */
+        .hero-text-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-left: 5px solid var(--aj-indigo);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            font-size: 3rem;
+            color: var(--aj-indigo);
+            letter-spacing: 0.5rem;
+            height: 300px;
+            float: right;
+            margin-left: 20px;
+            font-weight: 900;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* 特色圓圈 (En) */
+        .feature-circle {
+            width: 180px; height: 180px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: 0.4s;
+            border: 2px solid var(--aj-sakura);
+            position: relative;
+        }
+        .feature-circle:hover {
+            transform: scale(1.05);
+            border-color: var(--aj-red);
+            box-shadow: 0 15px 35px rgba(215, 75, 75, 0.2);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--aj-indigo);
+            margin-bottom: 10px;
+        }
+        .feature-title {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* 日本地圖/留學區塊 */
+        .japan-map-section {
+            background-color: var(--aj-indigo);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-bg {
+            position: absolute;
+            right: 5%; top: 10%;
+            width: 40%;
+            opacity: 0.2;
+            transform: rotate(10deg);
+        }
+        .exchange-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .exchange-card:hover {
+            background: white;
+            color: var(--aj-indigo);
+        }
+        
+        /* 照片畫廊 (Polaroid Style) */
+        .gallery-item {
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: 0.3s;
+        }
+        .gallery-item:hover {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 10;
+        }
+        .gallery-item:nth-child(even) { transform: rotate(2deg); }
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: sepia(20%);
+        }
+        .gallery-caption {
+            font-family: 'Caveat', cursive; /* 手寫感 */
+            color: #555;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* 職涯與證照 */
+        .career-badge {
+            background: white;
+            border-left: 4px solid var(--aj-red);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f8f8;
+            border-top: 1px solid #eee;
+            padding: 60px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://img.icons8.com/color/48/torii.png" alt="Torii" height="35" class="me-2">
+                修平應日 <span class="ms-2 small text-secondary fw-light">Applied Japanese</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ajNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="ajNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="index.html"><i class="fas fa-torii-gate me-1"></i>回招生首頁</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#features">系所特色</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#exchange">赴日留學</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#internship">海外實習</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#culture">文化活動</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#apply" class="btn btn-aj">開始旅程</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-text-box">
+                        <h1 class="vertical-text">日本職涯</h1>
+                        <h1 class="vertical-text" style="color: var(--aj-red); margin-right: 15px;">夢想啟航</h1>
+                        <div class="mt-4">
+                            <h3 class="elegant-font mb-3">修平應日系</h3>
+                            <p class="hero-subtitle">
+                                不只是學日文，更學會日本的「心」。<br>
+                                雙聯學位．全薪實習．跨文化專業。
+                            </p>
+                            <div class="d-flex gap-3">
+                                <a href="#exchange" class="btn btn-aj btn-lg shadow">探索留學計畫</a>
+                                <a href="https://new.hust.edu.tw/aj/" target="_blank" class="btn btn-outline-dark btn-lg">系網詳情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-5" style="background-color: var(--aj-sakura);">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <span class="text-danger small fw-bold tracking-widest">HUST AJ FEATURES</span>
+                <h2 class="elegant-font display-5 mb-3">三大核心素養</h2>
+                <img src="https://img.icons8.com/color/48/cherry-blossom.png" alt="sakura" width="30">
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-circle">
+                        <i class="fas fa-language feature-icon"></i>
+                        <h4 class="feature-title">語言實務</h4>
+                    </div>
+                    <div class="text-center px-4">
+                        <p class="text-secondary small">
+                            N1/N2 檢定及格率高。課程涵蓋商務日語、觀光導遊與翻譯實務，培養敢開口的日語人才。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-circle" style="border-color: var(--aj-matcha);">
+                        <i class="fas fa-plane-departure feature-icon" style="color: var(--aj-matcha);"></i>
+                        <h4 class="feature-title">國際移動</h4>
+                    </div>
+                    <div class="text-center px-4">
+                        <p class="text-secondary small">
+                            豐富的日本姐妹校資源。提供「雙聯學位 (2+2)」、「交換留學」與「海外實習」，大學四年玩轉日本。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-circle" style="border-color: var(--aj-red);">
+                        <i class="fas fa-drum feature-icon" style="color: var(--aj-red);"></i>
+                        <h4 class="feature-title">文化體驗</h4>
+                    </div>
+                    <div class="text-center px-4">
+                        <p class="text-secondary small">
+                            著名的「和太鼓隊」、茶道與浴衣體驗。透過文化活動深刻理解日本精神 (Omotenashi)。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="exchange" class="japan-map-section">
+        <i class="fas fa-map-marked-alt map-bg display-1"></i>
+        
+        <div class="container position-relative z-index-1">
+            <div class="row">
+                <div class="col-lg-5">
+                    <h2 class="elegant-font display-4 mb-4">學海築夢<br>飛向日本</h2>
+                    <p class="lead opacity-75 mb-5">
+                        教育部高額補助，讓你無後顧之憂。<br>
+                        無論是想拿雙學位，或是去溫泉飯店打工度假，我們都有專屬通道。
+                    </p>
+                    <div class="d-flex gap-3 text-white mb-4">
+                        <div class="text-center">
+                            <h3 class="fw-bold text-warning">14+</h3>
+                            <small>姐妹校</small>
+                        </div>
+                        <div class="vr bg-light"></div>
+                        <div class="text-center">
+                            <h3 class="fw-bold text-warning">50+</h3>
+                            <small>每年赴日人數</small>
+                        </div>
+                        <div class="vr bg-light"></div>
+                        <div class="text-center">
+                            <h3 class="fw-bold text-warning">100%</h3>
+                            <small>實習媒合率</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="exchange-card">
+                                <h5 class="fw-bold"><i class="fas fa-university me-2 text-warning"></i>留學交換</h5>
+                                <ul class="list-unstyled small mt-3 mb-0">
+                                    <li class="mb-2">城西國際大學 (雙聯/交換)</li>
+                                    <li class="mb-2">岡山商科大學 (雙聯)</li>
+                                    <li class="mb-2">青森大學 (交換)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="exchange-card">
+                                <h5 class="fw-bold"><i class="fas fa-briefcase me-2 text-warning"></i>海外實習 (有薪)</h5>
+                                <ul class="list-unstyled small mt-3 mb-0">
+                                    <li class="mb-2">北海道 滑雪渡假村</li>
+                                    <li class="mb-2">箱根/熱海 溫泉飯店</li>
+                                    <li class="mb-2">九州 觀光飯店</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-white text-dark rounded">
+                        <i class="fas fa-info-circle text-primary me-2"></i>
+                        <small><strong>亮點：</strong> 113學年度已有 3 位同學取得雙聯學位，並順利在日本就業！</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="culture" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="elegant-font text-dark">應日系的生活日常</h2>
+                <p class="text-secondary">從課堂到日本，每一刻都是學習</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1544965838-54ef8406f868?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Taiko Drum" class="gallery-img"
+                             onerror="this.src='https://placehold.co/400x300/d74b4b/FFF?text=和太鼓社'">
+                        <div class="gallery-caption">熱血和太鼓社 (第一名!)</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1558862107-d49ef2a04d72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Internship" class="gallery-img"
+                             onerror="this.src='https://placehold.co/400x300/1e3a5f/FFF?text=溫泉飯店實習'">
+                        <div class="gallery-caption">溫泉飯店實習</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Study Abroad" class="gallery-img"
+                             onerror="this.src='https://placehold.co/400x300/769a5b/FFF?text=日本校園'">
+                        <div class="gallery-caption">日本大學校園生活</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Kimono" class="gallery-img"
+                             onerror="this.src='https://placehold.co/400x300/d74b4b/FFF?text=浴衣體驗'">
+                        <div class="gallery-caption">浴衣與茶道體驗</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career" class="py-5" style="background-color: var(--bg-paper);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <h2 class="elegant-font mb-4">畢業後的舞台</h2>
+                    <p class="text-secondary">
+                        具備「語言+專業」的你，無論是在日本還是台灣的日商，都是搶手人才。
+                    </p>
+                    <a href="#" class="btn btn-outline-dark rounded-pill mt-3">查看優秀系友榜</a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="career-badge">
+                        <div>
+                            <h5 class="fw-bold mb-0">赴日就業</h5>
+                            <small class="text-muted">飯店管理、機場地勤、免稅店、滑雪教練</small>
+                        </div>
+                        <i class="fas fa-passport fa-2x text-secondary"></i>
+                    </div>
+                    <div class="career-badge" style="border-left-color: var(--aj-indigo);">
+                        <div>
+                            <h5 class="fw-bold mb-0">台灣日商企業</h5>
+                            <small class="text-muted">日語業務、秘書、翻譯、日系連鎖餐飲幹部</small>
+                        </div>
+                        <i class="fas fa-building fa-2x text-secondary"></i>
+                    </div>
+                    <div class="career-badge" style="border-left-color: var(--aj-matcha);">
+                        <div>
+                            <h5 class="fw-bold mb-0">觀光旅遊業</h5>
+                            <small class="text-muted">日語導遊、領隊、旅行社OP</small>
+                        </div>
+                        <i class="fas fa-suitcase-rolling fa-2x text-secondary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-5 text-center" style="background: url('https://www.transparenttextures.com/patterns/cubes.png'), var(--aj-indigo); color: white;">
+        <div class="container py-4">
+            <h2 class="elegant-font mb-4">日本語で、夢を叶えよう！</h2>
+            <p class="lead mb-5 opacity-75">用日語實現夢想。現在就加入修平應日系。</p>
+            <button class="btn btn-aj btn-lg bg-white text-danger fw-bold border-white px-5 py-3">
+                <i class="fas fa-plane me-2"></i> 立即登機 (報名獨招)
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <img src="https://img.icons8.com/color/48/torii.png" alt="Torii" height="40" class="mb-3 grayscale opacity-50">
+            <h5 class="fw-bold text-dark">修平科技大學 應用日語系</h5>
+            <p class="small mb-1">Department of Applied Japanese, HUST</p>
+            <p class="small text-muted">台中市大里區工業路11號 | (04) 2496-1100 轉 2500</p>
+            <div class="mt-4">
+                <a href="#" class="text-secondary mx-2"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-secondary mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-secondary mx-2"><i class="fab fa-line fa-lg"></i></a>
+            </div>
+            <p class="small text-muted mt-4">Copyright © 2026 HUST AJ. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
